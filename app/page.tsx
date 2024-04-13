@@ -11,13 +11,39 @@ export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
 
-  const sendMessage = (message: string) => {
+  const sendMessage = async (message: string) => {
     if (!message) return;
+  
+    // Add the user message to the state
     setMessages((prevMessages) => [...prevMessages, { text: message, sender: 'user' }]);
-    // Simulate a response from the system
-    setTimeout(() => {
-      setMessages((prevMessages) => [...prevMessages, { text: "System response", sender: 'system' }]);
-    }, 500);
+  
+    try {
+      // Call the backend API route to get the embedding
+      console.log('message', message)
+      const response = await fetch('/embed', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+  
+      const embedding = await response.json();
+      
+      // You can now use the embedding for further processing or store it
+      console.log(embedding);
+  
+      // Here you can set the system's response based on the embedding
+      setMessages((prevMessages) => [...prevMessages, { text: "System response based on embedding", sender: 'system' }]);
+  
+    } catch (error) {
+      console.error('Failed to fetch embedding:', error);
+      // Handle the error state appropriately in the UI
+    }
   };
 
   const handleInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
