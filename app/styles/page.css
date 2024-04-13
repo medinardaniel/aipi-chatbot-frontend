@@ -1,0 +1,104 @@
+/* page.css */
+
+/* General layout and spacing */
+/* General layout and spacing */
+.main {
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh; /* Adjust as necessary to fill the screen */
+    padding: 24px;
+    box-sizing: border-box; /* Include padding in the height calculation */
+    height: 100vh; /* Ensure the main container fills the viewport */
+}
+
+.chat-interface {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    width: 70%;
+    align-items: center;
+    height: 100%; /* Full height to align children properly */
+}
+
+.main-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align children to the start */
+    flex-grow: 1;
+    width: 100%;
+    height: calc(100% - 48px); /* Adjust based on the height of the input container */
+    align-items: center;
+}
+
+/* Chat window styles */
+.chat-window {
+    flex-grow: 1;
+    overflow-y: auto; /* Allows scroll on overflow */
+    margin-bottom: 16px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: 100%;
+}
+
+.message-container {
+    width: 100%;
+    margin: 4px 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.message-container span {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 16px;
+    background-color: #e0e0e0;
+    word-wrap: break-word;
+    max-width: 80%;
+}
+
+/* Input container styles */
+.input-container {
+    display: flex;
+    width: 100%;
+    padding: 8px; /* Padding around the input area */
+}
+
+.input-form {
+    flex-grow: 1;
+    border: 2px solid #ccc;
+    padding: 8px;
+    border-radius: 8px 0 0 8px;
+    outline: none;
+    resize: none;
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+/* Ensure the chat window scrolls to the bottom */
+.chat-window {
+    scroll-behavior: smooth;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .main-content-container {
+        flex-direction: column-reverse;
+        height: 100%; /* Ensure the container takes full available height */
+    }
+}
