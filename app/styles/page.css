@@ -1,14 +1,81 @@
 /* page.css */
 
-/* General layout and spacing */
+/* Imports */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 /* General layout and spacing */
 .main {
+    position: fixed; /* Fixed positioning makes the div stick to the viewport */
+    right: 0; /* Position at the right */
+    top: 0; /* Position at the top */
+    width: 73%; /* Take up the remaining width of the viewport */
+    height: 100vh; /* Full height of the viewport */
     display: flex;
     flex-direction: column;
-    min-height: 90vh; /* Adjust as necessary to fill the screen */
     padding: 24px;
-    box-sizing: border-box; /* Include padding in the height calculation */
-    height: 100vh; /* Ensure the main container fills the viewport */
+    box-sizing: border-box;
+    margin-right: 10px;
+    align-items: center;
+}
+
+.left-side {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 25%;
+    height: 100vh;
+    background-color: #012169;
+    z-index: -1;
+    align-items: center;
+}
+
+.title {
+    color: white;
+    font-size: 28px;
+    font-family: 'EB Garamond', serif;
+    text-align: center; /* Horizontally center the text */
+    padding-bottom: 0;
+    margin-bottom: 5px; /* Reduce the bottom margin */
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 60px;
+    font-weight: 400; /* Make the font less bold */
+}
+
+.subtitle {
+    color: white;
+    font-size: 16px;
+    font-family: 'Open Sans', serif;
+    text-align: center; /* Horizontally center the text */
+    padding-top: 0;
+    margin-top: 5px; /* Reduce the top margin */
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.description-title {
+    color: white;
+    font-size: 16px;
+    font-family: 'Open Sans', serif;
+    text-align: center; /* Align the text to the left */
+    margin-top: 100px;
+    margin-bottom: 10px; /* Add some space between the title and the list */
+    margin-left: 30px;
+    margin-right: 20px;
+}
+
+.description {
+    color: white;
+    font-size: 14px;
+    font-family: 'Open Sans', serif;
+    list-style-type: disc; /* Use disc as the bullet point */
+    padding-left: 20px; /* Add some padding to the left of the list to indent it */
+    margin-left: 30px;
+    margin-right: 20px;
+}
+
+.description li {
+    margin-bottom: 10px; /* Add some space at the bottom of each list item */
 }
 
 .chat-interface {
@@ -16,38 +83,48 @@
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
-    width: 70%;
+    width: 50%;
     align-items: center;
     height: 100%; /* Full height to align children properly */
+    padding: 20px;
 }
 
 .main-content-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start; /* Align children to the start */
     flex-grow: 1;
-    width: 100%;
+    width: 70%;
     height: calc(100% - 48px); /* Adjust based on the height of the input container */
     align-items: center;
 }
 
 /* Chat window styles */
 .chat-window {
+    overflow-y: auto;  /* Allows vertical scrolling */
+    overflow-x: hidden; /* Disables horizontal scrolling */
     flex-grow: 1;
     overflow-y: auto; /* Allows scroll on overflow */
     margin-bottom: 16px;
     padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
     width: 100%;
 }
 
 .message-container {
+    display: flex;
     width: 100%;
     margin: 4px 0;
-    display: flex;
-    justify-content: flex-start;
+    margin-bottom: 10px;
+    font-family: 'Open Sans', serif;
+}
+
+.user-message {
+    justify-content: flex-end; /* Aligns user messages to the right */
+    margin-right: 40px;
+}
+
+.system-message {
+    justify-content: flex-start; /* Aligns system messages to the left */
 }
 
 .message-container span {
@@ -59,6 +136,17 @@
     max-width: 80%;
 }
 
+.user-message span {
+    background-color: #012169; /* A blue shade for user messages */
+    color: white;
+    margin-right: 20px;
+}
+
+.system-message span {
+    background-color: #e0e0e0; /* A light grey for system messages */
+    color: black;
+}
+
 /* Input container styles */
 .input-container {
     display: flex;
@@ -67,23 +155,33 @@
 }
 
 .input-form {
-    flex-grow: 1;
+    flex: 1;
     border: 2px solid #ccc;
     padding: 8px;
-    border-radius: 8px 0 0 8px;
+    border-radius: 8px;
     outline: none;
     resize: none;
+    font-family: 'Open Sans', serif;
+    font-size: 14px;
+    height: 25px;
+    line-height: 25px;
+    overflow-y: scroll;
 }
 
 .submit-button {
-    background-color: #007bff;
+    background-color: #012169;
     color: white;
     padding: 8px 16px;
     font-weight: bold;
     border: none;
-    border-radius: 0 8px 8px 0;
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s;
+    font-family: 'Open Sans', serif;
+    font-size: 14px;
+    font-weight: 400;
+    width: 100px; /* Make the submit button wider */
+    margin-left: 5px; /* Add some space to the left of the submit button */
 }
 
 .submit-button:hover {
@@ -102,3 +200,69 @@
         height: 100%; /* Ensure the container takes full available height */
     }
 }
+
+.robot-icon {
+    width: 35px; /* Adjust as needed */
+    height: 35px; /* Adjust as needed */
+    margin-right: 10px; /* Add some space to the right of the image */
+}
+
+.chat-placeholder {
+    display: flex;
+    flex-direction: column; /* Stack the icon and text vertically */
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ensure the placeholder takes up the full height */
+    color: #aaa; /* Styling for placeholder text */
+    font-family: 'Open Sans', serif;
+    text-align: center; /* Center the text and image */
+  }
+  
+  .placeholder-icon {
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    margin-bottom: 10px; /* Space between the image and text */
+  }
+
+  .loading-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .loading-dots {
+    display: flex;
+    justify-content: space-around;
+    width: 50px; /* Adjust size as needed */
+  }
+  
+  .loading-dots div {
+    width: 8px;
+    height: 8px;
+    background-color: #012169;
+    border-radius: 50%;
+    animation: loadingDots 1.2s infinite ease-in-out both;
+  }
+  
+  @keyframes loadingDots {
+    0%, 80%, 100% {
+      transform: scale(0);
+    }
+    40% {
+      transform: scale(1.0);
+    }
+  }
+  
+  .loading-dots div:nth-child(2) {
+    animation-delay: -0.16s;
+  }
+  
+  .loading-dots div:nth-child(3) {
+    animation-delay: -0.32s;
+  }
+
+.submit-button.disabled,
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
