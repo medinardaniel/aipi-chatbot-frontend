@@ -40,7 +40,7 @@ const Home: React.FC = () => {
     setIsLoading(true);  // Start loading indication
 
     try {
-        const response = await fetch('http://127.0.0.1:5000/process', {
+        const response = await fetch('https://aipi-chatbot-fc2ad2f34c9f.herokuapp.com/process', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
