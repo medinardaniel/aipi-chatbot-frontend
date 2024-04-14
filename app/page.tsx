@@ -116,6 +116,12 @@ const Home: React.FC = () => {
               )}
             </div>
           ))}
+          {messages.length === 0 && !isLoading && (
+            <div className="chat-placeholder">
+              <img src="robot-gray.svg" alt="Start a conversation" className="placeholder-icon"/>
+              Ask me about the AI Masters of Engineering program at Duke University!
+            </div>
+            )}
           </div>
             <div className="input-container">
               <textarea
